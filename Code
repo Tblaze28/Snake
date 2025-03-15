@@ -83,7 +83,8 @@ while running:
     Score = 0
     if new_head == food:
         Score += 1
-        
+    pygame.display(Score) = [[399,0]]
+
     #Draw SNEKE
     for segment in snake:
         pygame.draw.rect(screen, GREEN, (segment[0], segment[1], CELL_SIZE, CELL_SIZE))
