@@ -108,4 +108,4 @@ while running:
     clock.tick(10) #fps limit
 
 pygame.quit()
-print("Game closed.") #debug
+print("FINAL SCORE: {score}") #debug
