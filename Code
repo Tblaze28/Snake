@@ -41,7 +41,7 @@ counter = 0 #Debug counter
 
 while running:
     screen.fill(BLACK) #background
-    time.sleep(.5)
+    time.sleep(.3)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
