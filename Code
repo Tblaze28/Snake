@@ -84,7 +84,7 @@ while True: #Constant running
 
         #Self Collision Detection
         if (head_x, head_y) in snake:
-            print(f"Game Over, your SNEKE hit itself at {score} score. Why you hittin yourself?")
+            print(f"Game Over, your SNEKE hit itself at {score} score. Why's he hittin himself?")
             running = False
         
         #Extend SNEKE
