@@ -1,4 +1,4 @@
-git config pull.rebase true
+
 import pygame
 import random
 import time
@@ -41,7 +41,7 @@ counter = 0 #Debug counter
 
 while running:
     screen.fill(BLACK) #background
-    print("SNEKE slithering...{counter}") #the loop works debug
+    print("SNEKE slithering... " + str(counter)) #the loop works debug
     counter += 1
     time.sleep(1)
 
