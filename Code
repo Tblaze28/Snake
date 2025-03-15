@@ -76,14 +76,13 @@ while running:
     if new_head == food:
         food = (random.randint(0, WIDTH // CELL_SIZE - 1) * CELL_SIZE,
                 random.randint(0, HEIGHT // CELL_SIZE - 1) * CELL_SIZE)
+        score += 1 #Score for eating food
     else:
         snake.pop() #keep SNEKE size constant if no food
 
     #Scoring
-    Score = 0
-    if new_head == food:
-        Score += 1
-    pygame.display(Score) = [[399,0]]
+    score = 0
+    font = pygame.font.Font(None, 36) #Font size 36, default font
 
     #Draw SNEKE
     for segment in snake:
