@@ -84,6 +84,8 @@ while running:
     #Scoring
     score = 0
     font = pygame.font.Font(None, 36) #Font size 36, default font
+    score_text = font.render(f"Score: {score}", True, WHITE)
+    screen.blit = (10, 10) #Display Score location
 
     #Draw SNEKE
     for segment in snake:
