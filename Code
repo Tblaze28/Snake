@@ -1,3 +1,4 @@
+git config pull.rebase true
 import pygame
 import random
 import time
