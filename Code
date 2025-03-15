@@ -23,7 +23,7 @@ BLACK = (0, 0, 0)
 #CREATE GAME WINDOW
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 print("Game window created successfully!")
-pygame.display.set_caption("SNAKE GAME!")
+pygame.display.set_caption("SNEKE GAME!")
 
 #SNEKE settings
 snake = [(100, 100), (90, 100), (80, 100)] #list of segments
@@ -78,7 +78,12 @@ while running:
                 random.randint(0, HEIGHT // CELL_SIZE - 1) * CELL_SIZE)
     else:
         snake.pop() #keep SNEKE size constant if no food
-    
+
+    #Scoring
+    Score = 0
+    if new_head == food:
+        Score += 1
+        
     #Draw SNEKE
     for segment in snake:
         pygame.draw.rect(screen, GREEN, (segment[0], segment[1], CELL_SIZE, CELL_SIZE))
