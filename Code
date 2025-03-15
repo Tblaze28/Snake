@@ -85,7 +85,7 @@ while True: #Constant running
             screen.fill(BLACK) #Clear screen
             draw_text("SNEK DED", font, RED, WIDTH // 2-100, HEIGHT // 3)
             draw_text(f"Score: {score}", font, WHITE, WIDTH // 2-100, HEIGHT // 2)
-            draw_text("Press 'R' to Restart or 'Q' to Quit", font, GREEN, WIDTH // 2- 10, HEIGHT // 1.5)
+            draw_text("Press 'R' to Restart or 'Q' to Quit", font, GREEN, WIDTH // 2-100, HEIGHT // 1.5)
             
             pygame.display.update() #Update screen to show messages
 
