@@ -5,6 +5,7 @@ import random
 #Initialize pygame
 pygame.display.init()
 pygame.font.init()
+print("Initializing SNEKE...")
 
 #Screen Dimensions
 WIDTH, HEIGHT = 600,400
@@ -18,6 +19,7 @@ BLACK = (0, 0, 0)
 
 #CREATE GAME WINDOW
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+print("Creating SNEKE window...") #debug
 pygame.display.set_caption("SNAKE GAME!")
 
 #SNEKE settings
@@ -34,6 +36,7 @@ clock = pygame.time.Clock()
 
 while running:
     screen.fill(BLACK) #background
+        print("SNEKE loop starting...") #debug
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -82,5 +85,6 @@ while running:
     pygame.display.update()
     clock.tick(10) #fps limit
 
+print("SNEKE says bye!")
 pygame.quit()
 print("Game closed.") #debug
