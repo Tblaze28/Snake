@@ -71,6 +71,7 @@ while running:
     #Extend SNEKE
     new_head = (head_x, head_y)
     snake.insert(0, new_head) 
+    score = 0
 
     #SNEKE eat food?
     if new_head == food:
@@ -82,7 +83,6 @@ while running:
         snake.pop() #keep SNEKE size constant if no food
 
     #Scoring
-    score = 0
     font = pygame.font.Font(None, 36) #Font size 36, default font
     score_text = font.render(f"Score: {score}", True, WHITE)
     screen.blit(score_text, (10, 10)) #Display Score location
