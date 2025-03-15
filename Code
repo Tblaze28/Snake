@@ -35,14 +35,18 @@ food = (random.randint(0, WIDTH // CELL_SIZE - 1) * CELL_SIZE,
         random.randint(0, HEIGHT // CELL_SIZE - 1) * CELL_SIZE)
 
 #Game Loop
-print("Starting Sneke loop...")
 running = True
+answer = input(print("Would you like to play SNEKE? (y/n)"))
+if answer == y:
+    running = True
+elif running: False
+
+print("Starting Sneke loop...")
 clock = pygame.time.Clock()
 counter = 0 #Debug counter
 
 while running:
     screen.fill(BLACK) #background
-    time.sleep(.1)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -81,6 +85,16 @@ while running:
         print(f"Score: {score}")
     else:
         snake.pop() #keep SNEKE size constant if no food
+
+    #Wall Collision Detection
+    if head_x < 0 or head_x >+ WIDTH or head_y < 0 or head_y >+ HEIGHT:
+        print("Game Over, ya hit the wall with your SNEKE.")
+        running = False
+
+    #Self Collision Detection
+    if (head_x, head_y) in snake:
+        print("Game Over, your SNEKE hit itself. Why you hittin yourself?")
+        running = False
 
     #Scoring
     font = pygame.font.Font(None, 36) #Font size 36, default font
