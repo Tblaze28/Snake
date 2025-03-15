@@ -41,9 +41,7 @@ counter = 0 #Debug counter
 
 while running:
     screen.fill(BLACK) #background
-    print("SNEKE slithering... " + str(counter)) #the loop works debug
-    counter += 1
-    time.sleep(1)
+    time.sleep(.5)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -90,7 +88,7 @@ while running:
 
     #Refresh Screen
     pygame.display.update()
-    clock.tick(10) #fps limit
+    clock.tick(30) #fps limit
 
 pygame.quit()
 print("Game closed.") #debug
