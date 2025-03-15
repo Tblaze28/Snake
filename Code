@@ -105,7 +105,7 @@ while running:
 
     #Refresh Screen
     pygame.display.update()
-    clock.tick(120) #fps limit
+    clock.tick(10) #fps limit
 
 pygame.quit()
 print("Game closed.") #debug
