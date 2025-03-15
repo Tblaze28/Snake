@@ -1,0 +1,95 @@
+import pygame
+import random
+import time
+
+
+#Initialize pygame
+print("Initializing Sneke...")
+pygame.display.init()
+print("Creating Sneke window...")
+pygame.font.init()
+
+#Screen Dimensions
+WIDTH, HEIGHT = 600,400
+CELL_SIZE = 20 #size of each grid
+
+#COLORS!
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+BLACK = (0, 0, 0)
+
+#CREATE GAME WINDOW
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+print("Game window created successfully!")
+pygame.display.set_caption("SNAKE GAME!")
+
+#SNEKE settings
+snake = [(100, 100), (90, 100), (80, 100)] #list of segments
+direction = "RIGHT"
+
+#Gobble Settings
+food = (random.randint(0, WIDTH // CELL_SIZE - 1) * CELL_SIZE,
+        random.randint(0, HEIGHT // CELL_SIZE - 1) * CELL_SIZE)
+
+#Game Loop
+print("Starting Sneke loop...")
+running = True
+clock = pygame.time.Clock()
+counter = 0 #Debug counter
+
+while running:
+    screen.fill(BLACK) #background
+    print("SNEKE slithering...{counter}") #the loop works debug
+    counter += 1
+    time.sleep(1)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            print("Quit event detected")
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP and direction != "DOWN":
+                direction = "UP"
+            elif event.key == pygame.K_DOWN and direction != "UP":
+                direction = "DOWN"
+            elif event.key == pygame.K_LEFT and direction != "RIGHT":
+                direction = "LEFT"
+            elif event.key == pygame.K_RIGHT and direction != "LEFT":
+                direction = "RIGHT"
+        
+    #MOVE SNEKE
+    head_x, head_y = snake[0]
+    if direction == "UP":
+        head_y -= CELL_SIZE
+    elif direction == "DOWN":
+        head_y += CELL_SIZE
+    elif direction == "LEFT":
+        head_x -= CELL_SIZE
+    elif direction == "RIGHT":
+        head_x += CELL_SIZE
+    
+    #Extend SNEKE
+    new_head = (head_x, head_y)
+    snake.insert(0, new_head) 
+
+    #SNEKE eat food?
+    if new_head == food:
+        food = (random.randint(0, WIDTH // CELL_SIZE - 1) * CELL_SIZE,
+                random.randint(0, HEIGHT // CELL_SIZE - 1) * CELL_SIZE)
+    else:
+        snake.pop() #keep SNEKE size constant if no food
+    
+    #Draw SNEKE
+    for segment in snake:
+        pygame.draw.rect(screen, GREEN, (segment[0], segment[1], CELL_SIZE, CELL_SIZE))
+    
+    #Draw Food
+    pygame.draw.rect(screen, RED, (food[0], food[1], CELL_SIZE, CELL_SIZE))
+
+    #Refresh Screen
+    pygame.display.update()
+    clock.tick(10) #fps limit
+
+pygame.quit()
+print("Game closed.") #debug
