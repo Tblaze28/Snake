@@ -88,7 +88,7 @@ while running:
 
     #Refresh Screen
     pygame.display.update()
-    clock.tick(30) #fps limit
+    clock.tick(60) #fps limit
 
 pygame.quit()
 print("Game closed.") #debug
