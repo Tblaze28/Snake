@@ -38,7 +38,7 @@ food = (random.randint(0, WIDTH // CELL_SIZE - 1) * CELL_SIZE,
 running = True
 font = pygame.font.Font(None, 36) #Font size 36, default font
 answer = font.render.input(f"Would you like to play SNEKE? (y/n)", True, WHITE)
-if answer == y:
+if input == "y":
     running = True
 elif running: False
 
