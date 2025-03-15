@@ -30,6 +30,7 @@ BLACK = (0, 0, 0)
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 print("Game window created successfully!")
 pygame.display.set_caption("SNEKE")
+pygame.event.set_grab(True) #captures all keyboard inputs
 
 #SNEKE settings
 snake = [(100, 100), (90, 100), (80, 100)] #list of segments
