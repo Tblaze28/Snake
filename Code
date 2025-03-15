@@ -102,6 +102,8 @@ while True: #Constant running
                         elif event.key == pygame.k_q: #quit game
                             pygame.quit()
                             exit()
+
+            pygame.display.update() #Update screen to show messages
         
         #Extend SNEKE
         new_head = (head_x, head_y)
