@@ -35,15 +35,9 @@ food = (random.randint(0, WIDTH // CELL_SIZE - 1) * CELL_SIZE,
         random.randint(0, HEIGHT // CELL_SIZE - 1) * CELL_SIZE)
 
 #Game Loop
-running = True
-font = pygame.font.Font(None, 36) #Font size 36, default font
-play = font.render.input(f"Would you like to play SNEKE? (y/n)", True, WHITE)
-if input == "y":
-    running = True
-elif running: False
-
 print("Starting Sneke loop...")
 clock = pygame.time.Clock()
+running = True
 counter = 0 #Debug counter
 
 while running:
