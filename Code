@@ -92,10 +92,7 @@ while True: #Constant running
             waiting = True
             while waiting:
                 for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        pygame.quit()
-                        exit()
-                    elif event.key == pygame.KEYDOWN:
+                    if event.key == pygame.KEYDOWN:
                         if event.key == pygame.k_r: #restart game
                             waiting= False
                         elif event.key == pygame.k_q: #quit game
