@@ -103,6 +103,7 @@ while True: #Constant running
                             exit()
 
             pygame.display.update() #Update screen to show messages
+            break
         
         #Extend SNEKE
         new_head = (head_x, head_y)
