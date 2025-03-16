@@ -88,9 +88,10 @@ while True: #Constant running
             draw_text(f"Score: {score}", font, WHITE, WIDTH // 2-100, HEIGHT // 2)
             draw_text("Press 'R' to Restart or 'Q' to Quit", font, GREEN, WIDTH // 2-100, HEIGHT // 1.5)
 
+            pygame.display.update() #Update screen to show messages
+
             #Player Input
             waiting = True
-
             while waiting:
                 for event in pygame.event.get():
                     print(event) #Prints all events
