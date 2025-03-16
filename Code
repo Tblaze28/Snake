@@ -90,8 +90,6 @@ while True: #Constant running
 
             #Player Input
             waiting = True
-            if not pygame.key.get_focused():
-                print ("Click the game window to enable keyboard input.")
 
             while waiting:
                 for event in pygame.event.get():
