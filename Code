@@ -92,14 +92,14 @@ while True: #Constant running
             waiting = True
             if not pygame.key.get_focused():
                 print ("Click the game window to enable keyboard input.")
-                
+
             while waiting:
                 for event in pygame.event.get():
                     print(event) #Prints all events
                     if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.k_r: #restart game
+                        if event.key == pygame.K_r: #restart game
                             waiting= False
-                        elif event.key == pygame.k_q: #quit game
+                        elif event.key == pygame.K_q: #quit game
                             pygame.quit()
                             exit()
 
