@@ -5,11 +5,25 @@ import time
 
 score = 0
 
-#Draw
+#Draw text
 def draw_text(text, font, color, x, y):
     text_surface = font.render(text, True, color)
     screen.blit(text_surface, (x, y))
 
+#Draw button
+def draw_button(text, font, color, x, y, width, height):
+    pygame.draw.rect(screen, color, (x, y, width, height))
+    draw_text(text, font, WHITE, x + 10, y + 10)
+
+#Main Menu
+def main_menu():
+    print("Welcome to SNEK!")
+    menu_running = True
+    while menu_running:
+        screen.fill(BLACK) #Clear screen
+        draw_text("SNKE", pygame.font.Front(None, 74), WHITE, WIDTH // 2-100, HEIGHT // 4)
+        draw_button("Slowest SNEK", pygame.font.Front(None, 74), WHITE, WIDTH // 2-100, HEIGHT // 2 - 50)
+        
 #Initialize pygame
 print("Initializing SNEK...")
 pygame.display.init()
