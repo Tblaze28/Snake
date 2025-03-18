@@ -22,8 +22,29 @@ def main_menu():
     while menu_running:
         screen.fill(BLACK) #Clear screen
         draw_text("SNKE", pygame.font.Front(None, 74), WHITE, WIDTH // 2-100, HEIGHT // 4)
-        draw_button("Slowest SNEK", pygame.font.Front(None, 74), WHITE, WIDTH // 2-100, HEIGHT // 2 - 50)
-        
+        draw_button("Slowest SNEK", pygame.font.Front(None, 36), GREEN, WIDTH // 2-100, HEIGHT // 2 - 50)
+        draw_button("Slower SNEK", pygame.font.Front(None, 36), GREEN, WIDTH // 2-100, HEIGHT // 2, 200, 50)
+        draw_button("Slow SNEK", pygame.font.Front(None, 36), GREEN, WIDTH // 2-100, HEIGHT // 2 + 50, 200, 50)
+        pygame.display.update() #Update screen to show menu
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                print("Quit event detected")
+                pygame.quit()
+                exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = event.pos
+                if WIDTH // 2 - 100 <= mouse_x <= WIDTH // 2 + 100:
+                    if HEIGHT // 2 - 50 <= mouse_y <= HEIGHT // 2:
+                        print("Slowest SNEK selected")
+                        return 5
+                    elif HEIGHT // 2 <= mouse_y <= HEIGHT // 2 + 50:
+                        print("Slower SNEK selected")
+                        return 10
+                    elif HEIGHT // 2 + 50 <= mouse_y <= HEIGHT // 2 + 100:
+                        print("Slow SNEK selected")
+                        return 15
+
 #Initialize pygame
 print("Initializing SNEK...")
 pygame.display.init()
