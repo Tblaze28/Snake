@@ -11,9 +11,9 @@ def draw_text(text, font, color, x, y):
     screen.blit(text_surface, (x, y))
 
 #Initialize pygame
-print("Initializing Sneke...")
+print("Initializing SNEK...")
 pygame.display.init()
-print("Creating Sneke window...")
+print("Creating SNEK window...")
 pygame.font.init()
 
 #Screen Dimensions
@@ -29,7 +29,7 @@ BLACK = (0, 0, 0)
 #CREATE GAME WINDOW
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 print("Game window created successfully!")
-pygame.display.set_caption("SNEKE")
+pygame.display.set_caption("SNEK")
 pygame.event.set_grab(True) #captures all keyboard inputs
 
 #SNEKE settings
@@ -41,7 +41,7 @@ food = (random.randint(0, WIDTH // CELL_SIZE - 1) * CELL_SIZE,
         random.randint(0, HEIGHT // CELL_SIZE - 1) * CELL_SIZE)
 
 #Game Loop
-print("Starting Sneke loop...")
+print("Starting SNEK loop...")
 running = True
 clock = pygame.time.Clock()
 counter = 0 #Debug counter
@@ -84,9 +84,9 @@ while True: #Constant running
         #Collision Detection (GAME OVER)
         if head_x < 0 or head_x >+ WIDTH or head_y < 0 or head_y >+ HEIGHT or (head_x, head_y) in snake:
             screen.fill(BLACK) #Clear screen
-            draw_text("SNEK DED", font, RED, WIDTH // 2-100, HEIGHT // 3)
-            draw_text(f"Score: {score}", font, WHITE, WIDTH // 2-100, HEIGHT // 2)
-            draw_text("Press 'R' to Restart or 'Q' to Quit", font, GREEN, WIDTH // 2-100, HEIGHT // 1.5)
+            draw_text("SNEK DED", font, RED, WIDTH // 2-100, HEIGHT // 6)
+            draw_text(f"Score: {score}", font, WHITE, WIDTH // 1.75-100, HEIGHT // 3)
+            draw_text("Press 'R' to Restart or 'Q' to Quit", font, GREEN, WIDTH // 2.75-100, HEIGHT // 2)
 
             pygame.display.update() #Update screen to show messages
 
@@ -116,7 +116,7 @@ while True: #Constant running
             score += 1 #Score for eating food
             print(f"Score: {score}")
         else:
-            snake.pop() #keep SNEKE size constant if no food
+            snake.pop() #keep SNEK size constant if no food
 
         #Scoring
         font = pygame.font.Font(None, 36) #Font size 36, default font
