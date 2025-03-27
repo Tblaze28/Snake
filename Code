@@ -4,6 +4,27 @@ import random
 import time
 
 score = 0
+highscores = 0
+
+#Screen Dimensions
+WIDTH, HEIGHT = 600,400
+CELL_SIZE = 20 #size of each grid
+
+#COLORS!
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+BLACK = (0, 0, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+PURPLE = (128, 0, 128)
+ORANGE = (255, 165, 0)
+PINK = (255, 192, 203)
+BROWN = (165, 42, 42)
+CYAN = (0, 255, 255)
+GREY = (128, 128, 128)
+PURPLE = (128, 40, 128)
+
 
 #Draw text
 def draw_text(text, font, color, x, y):
@@ -11,7 +32,14 @@ def draw_text(text, font, color, x, y):
     screen.blit(text_surface, (x, y))
 
 #Draw button
-def draw_button(text, font, color, x, y, width, height):
+def draw_button(text, font, color, x, y, width, height, outline_color=BLACK, outline_width=2):
+    pygame.draw.rect(screen, outline_color, (x - outline_width, y - outline_width, width + outline_width * 2, height + outline_width * 2))
+    pygame.draw.rect(screen, color, (x, y, width, height))
+    draw_text(text, font, BLACK, x + 10, y + 10)
+
+#Draw button
+def draw_button2(text, font, color, x, y, width, height, outline_color=WHITE, outline_width=2):
+    pygame.draw.rect(screen, outline_color, (x - outline_width, y - outline_width, width + outline_width * 2, height + outline_width * 2))
     pygame.draw.rect(screen, color, (x, y, width, height))
     draw_text(text, font, WHITE, x + 10, y + 10)
 
@@ -21,13 +49,20 @@ def main_menu():
     menu_running = True
     while menu_running:
         screen.fill(BLACK) #Clear screen
-        draw_text("SNKE", pygame.font.Front(None, 74), WHITE, WIDTH // 2-100, HEIGHT // 4)
-        draw_button("Slowest SNEK", pygame.font.Front(None, 36), GREEN, WIDTH // 2-100, HEIGHT // 2 - 50)
-        draw_button("Slower SNEK", pygame.font.Front(None, 36), GREEN, WIDTH // 2-100, HEIGHT // 2, 200, 50)
-        draw_button("Slow SNEK", pygame.font.Front(None, 36), GREEN, WIDTH // 2-100, HEIGHT // 2 + 50, 200, 50)
+        draw_text("SNEK", pygame.font.Font(None, 74), GREEN, WIDTH // 2-100, HEIGHT // 4)
+        draw_button("Slow SNEK", pygame.font.Font(None, 40), PINK, WIDTH // 2-100, HEIGHT // 2 - 50, 200, 50)
+        draw_button("Normal SNEK", pygame.font.Font(None, 40), YELLOW, WIDTH // 2-100, HEIGHT // 2, 200, 50)
+        draw_button("Fast SNEK", pygame.font.Font(None, 40), PURPLE, WIDTH // 2-100, HEIGHT // 2 + 50, 200, 50)
+        draw_button2("Exit", pygame.font.Font(None, 50), RED, WIDTH // 2 + 215, HEIGHT // 2 + 130, 90, 50)
         pygame.display.update() #Update screen to show menu
 
         for event in pygame.event.get():
+            if event.type == pygame.QUIT or event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = event.pos
+                if WIDTH // 2 + 215 <= mouse_x <= WIDTH // 2 + 305 and HEIGHT // 2 + 130 <= mouse_y <= HEIGHT // 2 + 180:
+                    print("Exit selected")
+                    pygame.quit()
+                    exit()
             if event.type == pygame.QUIT:
                 print("Quit event detected")
                 pygame.quit()
@@ -51,16 +86,6 @@ pygame.display.init()
 print("Creating SNEK window...")
 pygame.font.init()
 
-#Screen Dimensions
-WIDTH, HEIGHT = 600,400
-CELL_SIZE = 20 #size of each grid
-
-#COLORS!
-WHITE = (255, 255, 255)
-GREEN = (0, 255, 0)
-RED = (255, 0, 0)
-BLACK = (0, 0, 0)
-
 #CREATE GAME WINDOW
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 print("Game window created successfully!")
@@ -80,6 +105,9 @@ print("Starting SNEK loop...")
 running = True
 clock = pygame.time.Clock()
 counter = 0 #Debug counter
+
+#Display main menu and get game speed
+game_speed = main_menu()
 
 while True: #Constant running
     running = True
@@ -122,7 +150,8 @@ while True: #Constant running
             draw_text("SNEK DED", font, RED, WIDTH // 2-100, HEIGHT // 6)
             draw_text(f"Score: {score}", font, WHITE, WIDTH // 1.75-100, HEIGHT // 3)
             draw_text("Press 'R' to Restart or 'Q' to Quit", font, GREEN, WIDTH // 2.75-100, HEIGHT // 2)
-
+            draw_text("Or 'M' for main menu", font, GREEN, WIDTH // 2.75-100, HEIGHT // 1.75)
+            draw_text(f"High Scores: {highscores}", font, WHITE, WIDTH // 1.75-100, HEIGHT // 1.5)                  #High Scores
             pygame.display.update() #Update screen to show messages
 
             #Player Input
@@ -132,7 +161,12 @@ while True: #Constant running
                     print(event) #Prints all events
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_r: #restart game
-                            waiting= False
+                            waiting = False
+                        elif event.key == pygame.K_m: #main menu
+                            waiting = False
+                            menu_running = True
+                            game_speed = main_menu()
+                            running = False
                         elif event.key == pygame.K_q: #quit game
                             pygame.quit()
                             exit()
@@ -157,7 +191,7 @@ while True: #Constant running
         font = pygame.font.Font(None, 36) #Font size 36, default font
         score_text = font.render(f"Score: {score}", True, WHITE)
         screen.blit(score_text, (10, 10)) #Display Score location
-
+        
         #Draw SNEKE
         for segment in snake:
             pygame.draw.rect(screen, GREEN, (segment[0], segment[1], CELL_SIZE, CELL_SIZE))
@@ -167,7 +201,7 @@ while True: #Constant running
 
         #Refresh Screen
         pygame.display.update()
-        clock.tick(10) #game speed
+        clock.tick(game_speed) #game speed
 
 pygame.quit()
 print(f"FINAL SCORE: {score}")
